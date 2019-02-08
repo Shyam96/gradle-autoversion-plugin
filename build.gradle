@@ -13,10 +13,7 @@ dependencies {
 }
 
 task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier = 'javadoc'
-    from tasks.javadoc.destinationDir
-}
-
+    
 task sourcesJar(type: Jar) {
   classifier = 'sources'
   from sourceSets.main.allSource
@@ -24,8 +21,7 @@ task sourcesJar(type: Jar) {
 
 artifacts {
   archives jar
-  archives javadocJar
-  archives sourcesJar
+   archives sourcesJar
 }
 
 group 'com.github.mixja'
@@ -39,10 +35,7 @@ signing {
 uploadArchives {
   repositories {
     mavenDeployer {
-     beforeDeployment {
-       MavenDeployment deployment -> signing.signPom(deployment)
-     }
-    
+         
      pom.project {
        name 'Gradle Auto Version Plugin'
        packaging 'jar'
@@ -62,13 +55,7 @@ uploadArchives {
          }
        }
 
-       developers {
-         developer {
-           id 'mixja'
-           name 'Justin Menga'
-           email 'justin.menga@gmail.com'
-         }
-       }
+
      }
     }
   }
